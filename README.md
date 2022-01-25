@@ -30,14 +30,14 @@ npx cap sync
 ### usbAttachedDetached(...)
 
 ```typescript
-usbAttachedDetached(callback: MyPluginCallback) => any
+usbAttachedDetached(callback: MyPluginCallback) => Promise<CallbackID>
 ```
 
 | Param          | Type                                                                               |
 | -------------- | ---------------------------------------------------------------------------------- |
 | **`callback`** | <code>(data: <a href="#usbserialresponse">UsbSerialResponse</a>) =&gt; void</code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;string&gt;</code>
 
 --------------------
 
@@ -45,10 +45,10 @@ usbAttachedDetached(callback: MyPluginCallback) => any
 ### connectedDevices()
 
 ```typescript
-connectedDevices() => any
+connectedDevices() => Promise<UsbSerialResponse>
 ```
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#usbserialresponse">UsbSerialResponse</a>&gt;</code>
 
 --------------------
 
@@ -56,14 +56,14 @@ connectedDevices() => any
 ### openSerial(...)
 
 ```typescript
-openSerial(options: UsbSerialOptions) => any
+openSerial(options: UsbSerialOptions) => Promise<UsbSerialResponse>
 ```
 
 | Param         | Type                                                          |
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code><a href="#usbserialoptions">UsbSerialOptions</a></code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#usbserialresponse">UsbSerialResponse</a>&gt;</code>
 
 --------------------
 
@@ -71,10 +71,10 @@ openSerial(options: UsbSerialOptions) => any
 ### closeSerial()
 
 ```typescript
-closeSerial() => any
+closeSerial() => Promise<UsbSerialResponse>
 ```
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#usbserialresponse">UsbSerialResponse</a>&gt;</code>
 
 --------------------
 
@@ -82,10 +82,10 @@ closeSerial() => any
 ### readSerial()
 
 ```typescript
-readSerial() => any
+readSerial() => Promise<UsbSerialResponse>
 ```
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#usbserialresponse">UsbSerialResponse</a>&gt;</code>
 
 --------------------
 
@@ -93,14 +93,14 @@ readSerial() => any
 ### writeSerial(...)
 
 ```typescript
-writeSerial(data: UsbSerialWriteOptions) => any
+writeSerial(data: UsbSerialWriteOptions) => Promise<UsbSerialResponse>
 ```
 
 | Param      | Type                                                                    |
 | ---------- | ----------------------------------------------------------------------- |
 | **`data`** | <code><a href="#usbserialwriteoptions">UsbSerialWriteOptions</a></code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#usbserialresponse">UsbSerialResponse</a>&gt;</code>
 
 --------------------
 
@@ -108,14 +108,14 @@ writeSerial(data: UsbSerialWriteOptions) => any
 ### registerReadCall(...)
 
 ```typescript
-registerReadCall(callback: MyPluginCallback) => any
+registerReadCall(callback: MyPluginCallback) => Promise<CallbackID>
 ```
 
 | Param          | Type                                                                               |
 | -------------- | ---------------------------------------------------------------------------------- |
 | **`callback`** | <code>(data: <a href="#usbserialresponse">UsbSerialResponse</a>) =&gt; void</code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;string&gt;</code>
 
 --------------------
 

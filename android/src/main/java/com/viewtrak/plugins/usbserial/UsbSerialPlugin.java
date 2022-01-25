@@ -9,23 +9,30 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "UsbSerial")
 public class UsbSerialPlugin extends Plugin {
 
-    private UsbSerial implementation = new UsbSerial();
+    private UsbSerial implementation;
+
+    @Override
+    public void load() {
+        super.load();
+
+        implementation = new UsbSerial(getContext());
+    }
 
     @PluginMethod(returnType = PluginMethod.RETURN_CALLBACK)
     public void usbAttachedDetached(PluginCall call) {
-        JSObject ret = implementation.usbAttachedDetached(getActivity(), call);
+        JSObject ret = implementation.usbAttachedDetached(call);
         call.resolve(ret);
     }
 
     @PluginMethod
     public void connectedDevices(PluginCall call) {
-        JSObject ret = implementation.devices(getActivity());
+        JSObject ret = implementation.devices();
         call.resolve(ret);
     }
 
     @PluginMethod
     public void openSerial(PluginCall call) {
-        implementation.openSerial(getActivity(), call);
+        implementation.openSerial(call);
     }
 
     @PluginMethod
