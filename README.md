@@ -30,7 +30,7 @@ npx cap sync
 ### usbAttachedDetached(...)
 
 ```typescript
-usbAttachedDetached(callback: MyPluginCallback) => Promise<CallbackID>
+usbAttachedDetached(callback: MyPluginCallback) => Promise<string>
 ```
 
 | Param          | Type                                                                               |
@@ -108,7 +108,7 @@ writeSerial(data: UsbSerialWriteOptions) => Promise<UsbSerialResponse>
 ### registerReadCall(...)
 
 ```typescript
-registerReadCall(callback: MyPluginCallback) => Promise<CallbackID>
+registerReadCall(callback: MyPluginCallback) => Promise<string>
 ```
 
 | Param          | Type                                                                               |
