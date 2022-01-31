@@ -7,7 +7,7 @@
     "methods": [
       {
         "name": "usbAttachedDetached",
-        "signature": "(callback: MyPluginCallback) => Promise<string>",
+        "signature": "(callback: MyPluginCallback) => Promise<CallbackID>",
         "parameters": [
           {
             "name": "callback",
@@ -100,7 +100,7 @@
       },
       {
         "name": "registerReadCall",
-        "signature": "(callback: MyPluginCallback) => Promise<string>",
+        "signature": "(callback: MyPluginCallback) => Promise<CallbackID>",
         "parameters": [
           {
             "name": "callback",
