@@ -8,7 +8,6 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 
 @CapacitorPlugin(name = "UsbSerial")
 public class UsbSerialPlugin extends Plugin {
-
     private UsbSerial implementation;
 
     @Override
