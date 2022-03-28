@@ -21,6 +21,7 @@ npx cap sync
 * [`writeSerial(...)`](#writeserial)
 * [`registerReadCall(...)`](#registerreadcall)
 * [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -33,9 +34,9 @@ npx cap sync
 usbAttachedDetached(callback: MyPluginCallback) => Promise<CallbackID>
 ```
 
-| Param          | Type                                                                               |
-| -------------- | ---------------------------------------------------------------------------------- |
-| **`callback`** | <code>(data: <a href="#usbserialresponse">UsbSerialResponse</a>) =&gt; void</code> |
+| Param          | Type                                                          |
+| -------------- | ------------------------------------------------------------- |
+| **`callback`** | <code><a href="#myplugincallback">MyPluginCallback</a></code> |
 
 **Returns:** <code>Promise&lt;string&gt;</code>
 
@@ -111,9 +112,9 @@ writeSerial(data: UsbSerialWriteOptions) => Promise<UsbSerialResponse>
 registerReadCall(callback: MyPluginCallback) => Promise<CallbackID>
 ```
 
-| Param          | Type                                                                               |
-| -------------- | ---------------------------------------------------------------------------------- |
-| **`callback`** | <code>(data: <a href="#usbserialresponse">UsbSerialResponse</a>) =&gt; void</code> |
+| Param          | Type                                                          |
+| -------------- | ------------------------------------------------------------- |
+| **`callback`** | <code><a href="#myplugincallback">MyPluginCallback</a></code> |
 
 **Returns:** <code>Promise&lt;string&gt;</code>
 
@@ -160,5 +161,18 @@ registerReadCall(callback: MyPluginCallback) => Promise<CallbackID>
 | Prop       | Type                |
 | ---------- | ------------------- |
 | **`data`** | <code>string</code> |
+
+
+### Type Aliases
+
+
+#### MyPluginCallback
+
+<code>(data: <a href="#usbserialresponse">UsbSerialResponse</a>): void</code>
+
+
+#### CallbackID
+
+<code>string</code>
 
 </docgen-api>

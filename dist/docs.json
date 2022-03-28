@@ -12,7 +12,7 @@
           {
             "name": "callback",
             "docs": "",
-            "type": "(data: UsbSerialResponse) => void"
+            "type": "MyPluginCallback"
           }
         ],
         "returns": "Promise<string>",
@@ -105,7 +105,7 @@
           {
             "name": "callback",
             "docs": "",
-            "type": "(data: UsbSerialResponse) => void"
+            "type": "MyPluginCallback"
           }
         ],
         "returns": "Promise<string>",
@@ -142,7 +142,7 @@
           "complexTypes": [
             "UsbSerialError"
           ],
-          "type": "UsbSerialError | undefined"
+          "type": "UsbSerialError"
         },
         {
           "name": "data",
@@ -265,5 +265,32 @@
       ]
     }
   ],
-  "enums": []
+  "enums": [],
+  "typeAliases": [
+    {
+      "name": "MyPluginCallback",
+      "slug": "myplugincallback",
+      "docs": "",
+      "types": [
+        {
+          "text": "(data: UsbSerialResponse): void",
+          "complexTypes": [
+            "UsbSerialResponse"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CallbackID",
+      "slug": "callbackid",
+      "docs": "",
+      "types": [
+        {
+          "text": "string",
+          "complexTypes": []
+        }
+      ]
+    }
+  ],
+  "pluginConfigs": []
 }
