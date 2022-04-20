@@ -1,16 +1,4 @@
-export type CallbackID = string;
-
-export type MyPluginCallback = (data: UsbSerialResponse) => void;
-
-export interface UsbSerialPlugin {
-  usbAttachedDetached(callback: MyPluginCallback): Promise<CallbackID>;
-  connectedDevices(): Promise<UsbSerialResponse>;
-  openSerial(options: UsbSerialOptions): Promise<UsbSerialResponse>;
-  closeSerial(): Promise<UsbSerialResponse>;
-  readSerial(): Promise<UsbSerialResponse>;
-  writeSerial(data: UsbSerialWriteOptions): Promise<UsbSerialResponse>;
-  registerReadCall(callback: MyPluginCallback): Promise<CallbackID>;
-}
+import { PluginListenerHandle } from "@capacitor/core";
 
 export interface UsbSerialOptions {
   deviceId: number;
@@ -21,20 +9,29 @@ export interface UsbSerialOptions {
   parity?: number;
   dtr?: boolean;
   rts?: boolean;
-  sleepOnPause?: boolean;
 }
 
-export interface UsbSerialWriteOptions {
-  data: string;
+export interface UsbSerialDevice {
+  pid: number;
+  vid: number;
+  did: number;
 }
 
-export interface UsbSerialResponse {
-  success: boolean;
-  error?: UsbSerialError;
-  data?: any;
+export interface UsbSerialPlugin {
+  connectedDevices(): Promise<{ devices: []}>;
+  openSerial(options: UsbSerialOptions): Promise<void>;
+  closeSerial(): Promise<void>;
+  readSerial(): Promise<{ data: string}>;
+  writeSerial(options: { data: string }): Promise<void>;
+
+
+	addListener(eventName: 'log', listenerFunc: (data: { text: string, tag: string }) => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+	addListener(eventName: 'connected', listenerFunc: (data:  UsbSerialDevice) => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+	addListener(eventName: 'attached', listenerFunc: (data: UsbSerialDevice) => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+	addListener(eventName: 'detached', listenerFunc: (data: UsbSerialDevice) => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+	addListener(eventName: 'data', listenerFunc: (data: { data: string }) => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+	addListener(eventName: 'error', listenerFunc: (data: { error: string }) => void): Promise<PluginListenerHandle> & PluginListenerHandle;
 }
 
-export interface UsbSerialError {
-  message: string;
-  cause: string;
-}
+
+

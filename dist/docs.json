@@ -6,39 +6,18 @@
     "tags": [],
     "methods": [
       {
-        "name": "usbAttachedDetached",
-        "signature": "(callback: MyPluginCallback) => Promise<CallbackID>",
-        "parameters": [
-          {
-            "name": "callback",
-            "docs": "",
-            "type": "MyPluginCallback"
-          }
-        ],
-        "returns": "Promise<string>",
-        "tags": [],
-        "docs": "",
-        "complexTypes": [
-          "MyPluginCallback",
-          "CallbackID"
-        ],
-        "slug": "usbattacheddetached"
-      },
-      {
         "name": "connectedDevices",
-        "signature": "() => Promise<UsbSerialResponse>",
+        "signature": "() => Promise<{ devices: []; }>",
         "parameters": [],
-        "returns": "Promise<UsbSerialResponse>",
+        "returns": "Promise<{ devices: []; }>",
         "tags": [],
         "docs": "",
-        "complexTypes": [
-          "UsbSerialResponse"
-        ],
+        "complexTypes": [],
         "slug": "connecteddevices"
       },
       {
         "name": "openSerial",
-        "signature": "(options: UsbSerialOptions) => Promise<UsbSerialResponse>",
+        "signature": "(options: UsbSerialOptions) => Promise<void>",
         "parameters": [
           {
             "name": "options",
@@ -46,136 +25,195 @@
             "type": "UsbSerialOptions"
           }
         ],
-        "returns": "Promise<UsbSerialResponse>",
+        "returns": "Promise<void>",
         "tags": [],
         "docs": "",
         "complexTypes": [
-          "UsbSerialResponse",
           "UsbSerialOptions"
         ],
         "slug": "openserial"
       },
       {
         "name": "closeSerial",
-        "signature": "() => Promise<UsbSerialResponse>",
+        "signature": "() => Promise<void>",
         "parameters": [],
-        "returns": "Promise<UsbSerialResponse>",
+        "returns": "Promise<void>",
         "tags": [],
         "docs": "",
-        "complexTypes": [
-          "UsbSerialResponse"
-        ],
+        "complexTypes": [],
         "slug": "closeserial"
       },
       {
         "name": "readSerial",
-        "signature": "() => Promise<UsbSerialResponse>",
+        "signature": "() => Promise<{ data: string; }>",
         "parameters": [],
-        "returns": "Promise<UsbSerialResponse>",
+        "returns": "Promise<{ data: string; }>",
         "tags": [],
         "docs": "",
-        "complexTypes": [
-          "UsbSerialResponse"
-        ],
+        "complexTypes": [],
         "slug": "readserial"
       },
       {
         "name": "writeSerial",
-        "signature": "(data: UsbSerialWriteOptions) => Promise<UsbSerialResponse>",
+        "signature": "(options: { data: string; }) => Promise<void>",
         "parameters": [
           {
-            "name": "data",
+            "name": "options",
             "docs": "",
-            "type": "UsbSerialWriteOptions"
+            "type": "{ data: string; }"
           }
         ],
-        "returns": "Promise<UsbSerialResponse>",
+        "returns": "Promise<void>",
         "tags": [],
         "docs": "",
-        "complexTypes": [
-          "UsbSerialResponse",
-          "UsbSerialWriteOptions"
-        ],
+        "complexTypes": [],
         "slug": "writeserial"
       },
       {
-        "name": "registerReadCall",
-        "signature": "(callback: MyPluginCallback) => Promise<CallbackID>",
+        "name": "addListener",
+        "signature": "(eventName: 'log', listenerFunc: (data: { text: string; tag: string; }) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
         "parameters": [
           {
-            "name": "callback",
+            "name": "eventName",
             "docs": "",
-            "type": "MyPluginCallback"
+            "type": "'log'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "(data: { text: string; tag: string; }) => void"
           }
         ],
-        "returns": "Promise<string>",
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
         "tags": [],
         "docs": "",
         "complexTypes": [
-          "MyPluginCallback",
-          "CallbackID"
+          "PluginListenerHandle"
         ],
-        "slug": "registerreadcall"
+        "slug": "addlistenerlog"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'connected', listenerFunc: (data: UsbSerialDevice) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'connected'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "(data: UsbSerialDevice) => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle",
+          "UsbSerialDevice"
+        ],
+        "slug": "addlistenerconnected"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'attached', listenerFunc: (data: UsbSerialDevice) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'attached'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "(data: UsbSerialDevice) => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle",
+          "UsbSerialDevice"
+        ],
+        "slug": "addlistenerattached"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'detached', listenerFunc: (data: UsbSerialDevice) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'detached'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "(data: UsbSerialDevice) => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle",
+          "UsbSerialDevice"
+        ],
+        "slug": "addlistenerdetached"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'data', listenerFunc: (data: { data: string; }) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'data'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "(data: { data: string; }) => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerdata"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'error', listenerFunc: (data: { error: string; }) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'error'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "(data: { error: string; }) => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenererror"
       }
     ],
     "properties": []
   },
   "interfaces": [
-    {
-      "name": "UsbSerialResponse",
-      "slug": "usbserialresponse",
-      "docs": "",
-      "tags": [],
-      "methods": [],
-      "properties": [
-        {
-          "name": "success",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "boolean"
-        },
-        {
-          "name": "error",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [
-            "UsbSerialError"
-          ],
-          "type": "UsbSerialError"
-        },
-        {
-          "name": "data",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "any"
-        }
-      ]
-    },
-    {
-      "name": "UsbSerialError",
-      "slug": "usbserialerror",
-      "docs": "",
-      "tags": [],
-      "methods": [],
-      "properties": [
-        {
-          "name": "message",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "string"
-        },
-        {
-          "name": "cause",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "string"
-        }
-      ]
-    },
     {
       "name": "UsbSerialOptions",
       "slug": "usbserialoptions",
@@ -238,59 +276,57 @@
           "docs": "",
           "complexTypes": [],
           "type": "boolean | undefined"
-        },
-        {
-          "name": "sleepOnPause",
-          "tags": [],
-          "docs": "",
-          "complexTypes": [],
-          "type": "boolean | undefined"
         }
       ]
     },
     {
-      "name": "UsbSerialWriteOptions",
-      "slug": "usbserialwriteoptions",
+      "name": "PluginListenerHandle",
+      "slug": "pluginlistenerhandle",
       "docs": "",
       "tags": [],
       "methods": [],
       "properties": [
         {
-          "name": "data",
+          "name": "remove",
           "tags": [],
           "docs": "",
           "complexTypes": [],
-          "type": "string"
+          "type": "() => Promise<void>"
+        }
+      ]
+    },
+    {
+      "name": "UsbSerialDevice",
+      "slug": "usbserialdevice",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "pid",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "vid",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "did",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
         }
       ]
     }
   ],
   "enums": [],
-  "typeAliases": [
-    {
-      "name": "MyPluginCallback",
-      "slug": "myplugincallback",
-      "docs": "",
-      "types": [
-        {
-          "text": "(data: UsbSerialResponse): void",
-          "complexTypes": [
-            "UsbSerialResponse"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "CallbackID",
-      "slug": "callbackid",
-      "docs": "",
-      "types": [
-        {
-          "text": "string",
-          "complexTypes": []
-        }
-      ]
-    }
-  ],
+  "typeAliases": [],
   "pluginConfigs": []
 }

@@ -6,41 +6,24 @@ var capacitorUsbSerial = (function (exports, core) {
     });
 
     class UsbSerialWeb extends core.WebPlugin {
-        async usbAttachedDetached(callback) {
-            return 'Usb device attached call not implemented on web yet!' + callback.name;
+        connectedDevices() {
+            throw new Error('Method not implemented.');
         }
-        async connectedDevices() {
-            return {
-                success: false,
-                error: { message: 'Loading connected devices not implemented on web yet!', cause: '' }
-            };
+        openSerial(options) {
+            throw new Error('Method not implemented: ' + JSON.stringify(options));
         }
-        async openSerial(options) {
-            return {
-                success: false,
-                error: { message: 'Usb device open not implemented on web yet!, BaudRate ' + options.baudRate, cause: '' }
-            };
+        closeSerial() {
+            throw new Error('Method not implemented.');
         }
-        async closeSerial() {
-            return {
-                success: false,
-                error: { message: 'Usb device close not implemented on web yet!', cause: '' }
-            };
+        readSerial() {
+            throw new Error('Method not implemented.');
         }
-        async readSerial() {
-            return {
-                success: false,
-                error: { message: 'Usb serial read not implemented on web yet!', cause: '' }
-            };
+        writeSerial(options) {
+            throw new Error('Method not implemented: ' + JSON.stringify(options));
         }
-        async writeSerial(data) {
-            return {
-                success: false,
-                error: { message: 'Usb serial write not implemented on web yet!' + data, cause: '' }
-            };
-        }
-        async registerReadCall(callback) {
-            return 'Usb read call not implemented on web yet!' + callback.name;
+        addListener(eventName, listenerFunc) {
+            listenerFunc({});
+            return Promise.reject(`Method '${eventName}' not implemented.`);
         }
     }
 
