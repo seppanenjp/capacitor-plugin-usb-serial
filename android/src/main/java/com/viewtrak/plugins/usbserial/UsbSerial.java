@@ -35,9 +35,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UsbSerial implements SerialInputOutputManager.Listener {
-    private Context context;
+    private final Context context;
     // call that will be used to send back usb device attached/detached event
-    private Callback callback;
+    private final Callback callback;
 
     // activity reference from UsbSerialPlugin
 //    private AppCompatActivity mActivity;
