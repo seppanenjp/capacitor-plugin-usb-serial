@@ -52,7 +52,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
     private enum UsbPermission {Unknown, Requested, Granted, Denied}
 
     // logging tag
-    private final String TAG = UsbSerial.class.getSimpleName();
+//    private final String TAG = UsbSerial.class.getSimpleName();
 
     //    private boolean sleepOnPause;
     // I/O manager to handle new incoming serial data
@@ -103,9 +103,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
 
     @Override
     public void onNewData(byte[] data) {
-        mainLooper.post(() -> {
-            updateReceivedData(data);
-        });
+        mainLooper.post(() -> updateReceivedData(data));
     }
 
     @Override
@@ -171,7 +169,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
             UsbDeviceConnection usbConnection = usbManager.openDevice(driver.getDevice());
             if (usbConnection == null && usbPermission == UsbPermission.Unknown && !usbManager.hasPermission(driver.getDevice())) {
                 usbPermission = UsbPermission.Requested;
-                PendingIntent usbPermissionIntent = PendingIntent.getBroadcast(context, 0, new Intent(USB_PERMISSION), 0);
+                PendingIntent usbPermissionIntent = PendingIntent.getBroadcast(context, 0, new Intent(USB_PERMISSION), PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 context.registerReceiver(new BroadcastReceiver() {
                     @Override
                     public void onReceive(Context context, Intent intent) {
@@ -215,9 +213,8 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
         try {
             byte[] buffer = new byte[8192];
             int len = usbSerialPort.read(buffer, READ_WAIT_MILLIS);
-            String str = HexDump.toHexString(Arrays.copyOf(buffer, len));
-            str.concat("\n");
-            return str;
+//            str.concat("\n");
+            return HexDump.toHexString(Arrays.copyOf(buffer, len));
         } catch (IOException e) {
             // when using read with timeout, USB bulkTransfer returns -1 on timeout _and_ errors
             // like connection loss, so there is typically no exception thrown here on error
@@ -392,7 +389,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
     }
 
     public JSONArray devices() {
-        List<DeviceItem> listItems = new ArrayList();
+        List<DeviceItem> listItems = new ArrayList<>();
         UsbSerialProber usbProper = getProper();
         UsbManager usbManager = (UsbManager) context.getSystemService(Context.USB_SERVICE);
         for (UsbDevice device : usbManager.getDeviceList().values()) {
