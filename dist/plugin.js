@@ -34,8 +34,6 @@ var capacitorUsbSerial = (function (exports, core) {
 
     exports.UsbSerial = UsbSerial;
 
-    Object.defineProperty(exports, '__esModule', { value: true });
-
     return exports;
 
 })({}, capacitorExports);
