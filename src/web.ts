@@ -1,6 +1,6 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { UsbSerialOptions, UsbSerialPlugin, } from './definitions';
+import type { UsbSerialOptions, UsbSerialPlugin } from './definitions';
 
 export class UsbSerialWeb extends WebPlugin implements UsbSerialPlugin {
   connectedDevices(): Promise<{ devices: [] }> {
@@ -12,13 +12,16 @@ export class UsbSerialWeb extends WebPlugin implements UsbSerialPlugin {
   closeSerial(): Promise<void> {
     throw new Error('Method not implemented.');
   }
-  readSerial(): Promise<{ data: string; }> {
+  readSerial(): Promise<{ data: string }> {
     throw new Error('Method not implemented.');
   }
-  writeSerial(options: { data: string; }): Promise<void> {
+  writeSerial(options: { data: string }): Promise<void> {
     throw new Error('Method not implemented: ' + JSON.stringify(options));
   }
-  addListener(eventName: 'log' | 'connected' | 'attached' | 'detached' | 'data' | 'error', listenerFunc: (data: any) => void) {
+  addListener(
+    eventName: 'log' | 'connected' | 'attached' | 'detached' | 'data' | 'error',
+    listenerFunc: (data: any) => void
+  ) {
     listenerFunc({});
     return Promise.reject(`Method '${eventName}' not implemented.`) as any;
   }
