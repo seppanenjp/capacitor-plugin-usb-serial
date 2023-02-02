@@ -1,4 +1,4 @@
-import { PluginListenerHandle } from "@capacitor/core";
+import { PluginListenerHandle } from '@capacitor/core';
 export interface UsbSerialOptions {
     deviceId: number;
     portNum: number;

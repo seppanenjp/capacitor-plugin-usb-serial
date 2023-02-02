@@ -3,7 +3,7 @@
 var core = require('@capacitor/core');
 
 const UsbSerial = core.registerPlugin('UsbSerial', {
-    web: () => Promise.resolve().then(function () { return web; }).then(m => new m.UsbSerialWeb()),
+    web: () => Promise.resolve().then(function () { return web; }).then((m) => new m.UsbSerialWeb()),
 });
 
 class UsbSerialWeb extends core.WebPlugin {

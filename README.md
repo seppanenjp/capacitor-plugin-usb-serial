@@ -13,18 +13,18 @@ npx cap sync
 
 <docgen-index>
 
-- [`connectedDevices()`](#connecteddevices)
-- [`openSerial(...)`](#openserial)
-- [`closeSerial()`](#closeserial)
-- [`readSerial()`](#readserial)
-- [`writeSerial(...)`](#writeserial)
-- [`addListener('log', ...)`](#addlistenerlog)
-- [`addListener('connected', ...)`](#addlistenerconnected)
-- [`addListener('attached', ...)`](#addlistenerattached)
-- [`addListener('detached', ...)`](#addlistenerdetached)
-- [`addListener('data', ...)`](#addlistenerdata)
-- [`addListener('error', ...)`](#addlistenererror)
-- [Interfaces](#interfaces)
+* [`connectedDevices()`](#connecteddevices)
+* [`openSerial(...)`](#openserial)
+* [`closeSerial()`](#closeserial)
+* [`readSerial()`](#readserial)
+* [`writeSerial(...)`](#writeserial)
+* [`addListener('log', ...)`](#addlistenerlog)
+* [`addListener('connected', ...)`](#addlistenerconnected)
+* [`addListener('attached', ...)`](#addlistenerattached)
+* [`addListener('detached', ...)`](#addlistenerdetached)
+* [`addListener('data', ...)`](#addlistenerdata)
+* [`addListener('error', ...)`](#addlistenererror)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -39,7 +39,8 @@ connectedDevices() => Promise<{ devices: []; }>
 
 **Returns:** <code>Promise&lt;{ devices: []; }&gt;</code>
 
----
+--------------------
+
 
 ### openSerial(...)
 
@@ -51,7 +52,8 @@ openSerial(options: UsbSerialOptions) => Promise<void>
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code><a href="#usbserialoptions">UsbSerialOptions</a></code> |
 
----
+--------------------
+
 
 ### closeSerial()
 
@@ -59,7 +61,8 @@ openSerial(options: UsbSerialOptions) => Promise<void>
 closeSerial() => Promise<void>
 ```
 
----
+--------------------
+
 
 ### readSerial()
 
@@ -69,7 +72,8 @@ readSerial() => Promise<{ data: string; }>
 
 **Returns:** <code>Promise&lt;{ data: string; }&gt;</code>
 
----
+--------------------
+
 
 ### writeSerial(...)
 
@@ -81,7 +85,8 @@ writeSerial(options: { data: string; }) => Promise<void>
 | ------------- | ------------------------------ |
 | **`options`** | <code>{ data: string; }</code> |
 
----
+--------------------
+
 
 ### addListener('log', ...)
 
@@ -96,7 +101,8 @@ addListener(eventName: 'log', listenerFunc: (data: { text: string; tag: string; 
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
----
+--------------------
+
 
 ### addListener('connected', ...)
 
@@ -111,7 +117,8 @@ addListener(eventName: 'connected', listenerFunc: (data: UsbSerialDevice) => voi
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
----
+--------------------
+
 
 ### addListener('attached', ...)
 
@@ -126,7 +133,8 @@ addListener(eventName: 'attached', listenerFunc: (data: UsbSerialDevice) => void
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
----
+--------------------
+
 
 ### addListener('detached', ...)
 
@@ -141,7 +149,8 @@ addListener(eventName: 'detached', listenerFunc: (data: UsbSerialDevice) => void
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
----
+--------------------
+
 
 ### addListener('data', ...)
 
@@ -156,7 +165,8 @@ addListener(eventName: 'data', listenerFunc: (data: { data: string; }) => void) 
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
----
+--------------------
+
 
 ### addListener('error', ...)
 
@@ -171,9 +181,11 @@ addListener(eventName: 'error', listenerFunc: (data: { error: string; }) => void
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
----
+--------------------
+
 
 ### Interfaces
+
 
 #### UsbSerialOptions
 
@@ -188,11 +200,13 @@ addListener(eventName: 'error', listenerFunc: (data: { error: string; }) => void
 | **`dtr`**      | <code>boolean</code> |
 | **`rts`**      | <code>boolean</code> |
 
+
 #### PluginListenerHandle
 
 | Prop         | Type                                      |
 | ------------ | ----------------------------------------- |
 | **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
 
 #### UsbSerialDevice
 
