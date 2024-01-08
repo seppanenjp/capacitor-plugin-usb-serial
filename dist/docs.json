@@ -7,12 +7,14 @@
     "methods": [
       {
         "name": "connectedDevices",
-        "signature": "() => Promise<{ devices: []; }>",
+        "signature": "() => Promise<{ devices: UsbSerialDeviceInfo[]; }>",
         "parameters": [],
-        "returns": "Promise<{ devices: []; }>",
+        "returns": "Promise<{ devices: UsbSerialDeviceInfo[]; }>",
         "tags": [],
         "docs": "",
-        "complexTypes": [],
+        "complexTypes": [
+          "UsbSerialDeviceInfo"
+        ],
         "slug": "connecteddevices"
       },
       {
@@ -214,6 +216,36 @@
     "properties": []
   },
   "interfaces": [
+    {
+      "name": "UsbSerialDeviceInfo",
+      "slug": "usbserialdeviceinfo",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "device",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "{ productId: number; productName: string; vendorId: number; deviceId: number; }"
+        },
+        {
+          "name": "port",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "driver",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
     {
       "name": "UsbSerialOptions",
       "slug": "usbserialoptions",

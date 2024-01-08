@@ -34,10 +34,10 @@ npx cap sync
 ### connectedDevices()
 
 ```typescript
-connectedDevices() => Promise<{ devices: []; }>
+connectedDevices() => Promise<{ devices: UsbSerialDeviceInfo[]; }>
 ```
 
-**Returns:** <code>Promise&lt;{ devices: []; }&gt;</code>
+**Returns:** <code>Promise&lt;{ devices: UsbSerialDeviceInfo[]; }&gt;</code>
 
 --------------------
 
@@ -185,6 +185,15 @@ addListener(eventName: 'error', listenerFunc: (data: { error: string; }) => void
 
 
 ### Interfaces
+
+
+#### UsbSerialDeviceInfo
+
+| Prop         | Type                                                                                         |
+| ------------ | -------------------------------------------------------------------------------------------- |
+| **`device`** | <code>{ productId: number; productName: string; vendorId: number; deviceId: number; }</code> |
+| **`port`**   | <code>number</code>                                                                          |
+| **`driver`** | <code>string</code>                                                                          |
 
 
 #### UsbSerialOptions

@@ -231,8 +231,15 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
             throw new Error("can't send empty string to device", new Throwable("EMPTY_STRING"));
         }
         try {
-            byte[] data = (str + "\r\n").getBytes();
-            usbSerialPort.write(data, WRITE_WAIT_MILLIS);
+            byte[] buffer;
+            if (data.matches("^[0-9A-Fa-f]+$")) {
+                // Input data is in hex format
+                buffer = HexDump.hexStringToByteArray(data);
+            } else {
+                // Input data is plain text
+                buffer = data.getBytes();
+            }
+            usbSerialPort.write(buffer, WRITE_WAIT_MILLIS);
         } catch (Exception e) {
             closeSerial();
             throw new Error("connection lost: " + e.getMessage(), e.getCause());
@@ -367,6 +374,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
 
         // SportIdent
         customTable.addProduct(4292, 32778, Cp21xxSerialDriver.class);
+
         return new UsbSerialProber(customTable);
     }
 

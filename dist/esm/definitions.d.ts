@@ -14,9 +14,19 @@ export interface UsbSerialDevice {
     vid: number;
     did: number;
 }
+export interface UsbSerialDeviceInfo {
+    device: {
+        productId: number;
+        productName: string;
+        vendorId: number;
+        deviceId: number;
+    };
+    port: number;
+    driver: string;
+}
 export interface UsbSerialPlugin {
     connectedDevices(): Promise<{
-        devices: [];
+        devices: UsbSerialDeviceInfo[];
     }>;
     openSerial(options: UsbSerialOptions): Promise<void>;
     closeSerial(): Promise<void>;
