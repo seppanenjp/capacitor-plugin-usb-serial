@@ -1,3 +1,4 @@
+import type { PluginListenerHandle } from '@capacitor/core';
 import { WebPlugin } from '@capacitor/core';
 
 import type { UsbSerialOptions, UsbSerialPlugin } from './definitions';
@@ -21,7 +22,7 @@ export class UsbSerialWeb extends WebPlugin implements UsbSerialPlugin {
   addListener(
     eventName: 'log' | 'connected' | 'attached' | 'detached' | 'data' | 'error',
     listenerFunc: (data: any) => void
-  ) {
+  ): Promise<PluginListenerHandle> & PluginListenerHandle {
     listenerFunc({});
     return Promise.reject(`Method '${eventName}' not implemented.`) as any;
   }
