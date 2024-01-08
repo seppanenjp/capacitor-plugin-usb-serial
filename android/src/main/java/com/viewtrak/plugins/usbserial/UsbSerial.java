@@ -66,7 +66,6 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
     UsbDevice connectedDevice;
     // USB permission broadcastreceiver
     private final Handler mainLooper;
-    String messageNMEA = "";
 
 
 //    private RateLimiter throttle = RateLimiter.create(1.0);
@@ -154,6 +153,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
             if (device == null) {
                 throw new Error("connection failed: device not found", new Throwable("connectionFailed:DeviceNotFound"));
             }
+            
             UsbSerialDriver driver = getProper().probeDevice(device);
             if (driver == null) {
                 // tyring custom
@@ -257,26 +257,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
 
 
     private void updateReceivedData(byte[] data) {
-        try {
-            messageNMEA += new String(data);
-
-            int eol = messageNMEA.indexOf(0x0a);
-            if (-1 != eol) {
-                String sentence = messageNMEA.substring(0, eol + 1);
-                messageNMEA = messageNMEA.substring(eol + 1);
-
-//                    Boolean allowed = throttle.tryAcquire();
-//                    if (!allowed) {
-//                        return;
-//                    }
-
-                callback.receivedData(sentence);
-            } else if (messageNMEA.length() > 128) {
-                throw new Exception("invalid NMEA string");
-            }
-        } catch (Exception exception) {
-            updateReadDataError(exception);
-        }
+        callback.receivedData(HexDump.toHexString(data));
     }
 
     private void updateReadDataError(Exception exception) {
@@ -351,7 +332,6 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
 
     private UsbSerialProber getProper() {
         ProbeTable customTable = UsbSerialProber.getDefaultProbeTable();
-
         // 0x0403 / 0x60??: FTDI
         customTable.addProduct(1027, 24577, FtdiSerialDriver.class); // 0x6001: FT232R
         customTable.addProduct(1027, 24592, FtdiSerialDriver.class); // 0x6010: FT2232H
@@ -385,6 +365,8 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
         customTable.addProduct(3368, 516, CdcAcmSerialDriver.class); // 0x0d28 / 0x0204: ARM mbed
         customTable.addProduct(1155, 22336, CdcAcmSerialDriver.class); // 0x0483 / 0x5740: ST CDC
 
+        // SportIdent
+        customTable.addProduct(4292, 32778, Cp21xxSerialDriver.class);
         return new UsbSerialProber(customTable);
     }
 
