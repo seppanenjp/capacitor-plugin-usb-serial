@@ -153,7 +153,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
             if (device == null) {
                 throw new Error("connection failed: device not found", new Throwable("connectionFailed:DeviceNotFound"));
             }
-            
+
             UsbSerialDriver driver = getProper().probeDevice(device);
             if (driver == null) {
                 // tyring custom
@@ -232,12 +232,12 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
         }
         try {
             byte[] buffer;
-            if (data.matches("^[0-9A-Fa-f]+$")) {
+            if (str.matches("^[0-9A-Fa-f]+$")) {
                 // Input data is in hex format
-                buffer = HexDump.hexStringToByteArray(data);
+                buffer = HexDump.hexStringToByteArray(str);
             } else {
                 // Input data is plain text
-                buffer = data.getBytes();
+                buffer = str.getBytes();
             }
             usbSerialPort.write(buffer, WRITE_WAIT_MILLIS);
         } catch (Exception e) {
@@ -345,12 +345,12 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
         customTable.addProduct(1027, 24593, FtdiSerialDriver.class); // 0x6011: FT4232H
         customTable.addProduct(1027, 24596, FtdiSerialDriver.class); // 0x6014: FT232H
         customTable.addProduct(1027, 24597, FtdiSerialDriver.class); // 0x6015: FT230X, FT231X, FT234XD
-
+        
         // 0x10C4 / 0xEA??: Silabs CP210x
         customTable.addProduct(4292, 60000, Cp21xxSerialDriver.class); // 0xea60: CP2102 and other CP210x single port devices
         customTable.addProduct(4292, 60016, Cp21xxSerialDriver.class); // 0xea70: CP2105
         customTable.addProduct(4292, 60017, Cp21xxSerialDriver.class); // 0xea71: CP2108
-
+        
         // 0x067B / 0x23?3: Prolific PL2303x
         customTable.addProduct(1659, 8963, ProlificSerialDriver.class); // 0x2303: PL2303HX, HXD, TA, ...
         customTable.addProduct(1659, 9123, ProlificSerialDriver.class); // 0x23a3: PL2303GC
@@ -359,11 +359,14 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
         customTable.addProduct(1659, 9171, ProlificSerialDriver.class); // 0x23d3: PL2303GL
         customTable.addProduct(1659, 9187, ProlificSerialDriver.class); // 0x23e3: PL2303GE
         customTable.addProduct(1659, 9203, ProlificSerialDriver.class); // 0x23f3: PL2303GS
+        
+        // ATEN International Co., Ltd UC-232A Serial Port [pl2303]
+        customTable.addProduct(1367, 8200, ProlificSerialDriver.class);
 
         // 0x1a86 / 0x?523: Qinheng CH34x
         customTable.addProduct(6790, 21795, Ch34xSerialDriver.class); // 0x5523: CH341A
         customTable.addProduct(6790, 29987, Ch34xSerialDriver.class); // 0x7523: CH340
-
+        
         // CDC driver
         // customTable.addProduct(9025,      , driver)  // 0x2341 / ......: Arduino
         customTable.addProduct(5824, 1155, CdcAcmSerialDriver.class); // 0x16C0 / 0x0483: Teensyduino
@@ -371,7 +374,7 @@ public class UsbSerial implements SerialInputOutputManager.Listener {
         customTable.addProduct(7855, 4, CdcAcmSerialDriver.class); // 0x1eaf / 0x0004: Leaflabs Maple
         customTable.addProduct(3368, 516, CdcAcmSerialDriver.class); // 0x0d28 / 0x0204: ARM mbed
         customTable.addProduct(1155, 22336, CdcAcmSerialDriver.class); // 0x0483 / 0x5740: ST CDC
-
+        
         // SportIdent
         customTable.addProduct(4292, 32778, Cp21xxSerialDriver.class);
 
